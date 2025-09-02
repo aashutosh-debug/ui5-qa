@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/core/UIComponent"],(e,n)=>{"use strict";return e.extend("com.questionanswer.controller.Login",{onInit(){}})});
+//# sourceMappingURL=Login.controller.js.map

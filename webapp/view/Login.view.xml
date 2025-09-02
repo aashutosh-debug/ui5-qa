@@ -1,0 +1,40 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="com.questionanswer.controller.Login">
+
+    <App id="app-1">
+
+    <Page title="Login" id="LoginPage">
+        <content>
+            <VBox class="sapUiSmallMargin" alignItems="Center" justifyContent="Center">
+                
+                <Image src="img/login.png" width="120px" height="120px" class="sapUiSmallMarginBottom"/>
+
+                <Input
+                    id="usernameInput"
+                    placeholder="Enter Username"
+                    value="{/username}"
+                    width="250px"
+                    required="true" />
+
+                <Input
+                    id="passwordInput"
+                    placeholder="Enter Password"
+                    type="Password"
+                    value="{/password}"
+                    width="250px"
+                    required="true" />
+
+                <Button
+                    text="Login"
+                    type="Emphasized"
+                    press="onLoginPress"
+                    class="sapUiSmallMarginTop"/>
+
+            </VBox>
+        </content>
+    </Page>
+
+    </App>
+</mvc:View>

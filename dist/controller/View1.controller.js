@@ -1,2 +1,2 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"],e=>{"use strict";return e.extend("com.questionanswer.controller.View1",{onInit(){}})});
+sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/core/UIComponent"],(o,e)=>{"use strict";return o.extend("com.questionanswer.controller.View1",{onInit(){},onLogin:function(){var o=e.getRouterFor(this);o.navTo("Login")},onRegister:function(){var o=e.getRouterFor(this);o.navTo("Register")}})});
 //# sourceMappingURL=View1.controller.js.map

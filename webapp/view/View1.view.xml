@@ -1,6 +1,134 @@
-<mvc:View controllerName="com.questionanswer.controller.View1"
+<mvc:View
+    controllerName="com.questionanswer.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        class="sapUiResponsiveContentPadding"
+    >
+        <headerContent>
+            <Toolbar design="Transparent">
+                <Title
+                    text="AI Screen"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
+                />
+                <ToolbarSpacer />
+                <Button
+                    text="About"
+                    type="Transparent"
+                />
+                <Button
+                    text="How It Works"
+                    type="Transparent"
+                />
+                <Button
+                    text="Contact"
+                    type="Transparent"
+                />
+            </Toolbar>
+        </headerContent>
+        <content>
+            <VBox
+                width="auto"
+                alignItems="Center"
+                class="sapUiLargeMarginBottom"
+            >
+                <Title
+                    level="H3"
+                    titleStyle="H1"
+                    text="{i18n>smfs}"
+                />
+                <ToolbarSpacer />
+                <Text text="{i18n>sample}" />
+            </VBox>
+            <HBox alignItems="Center" justifyContent="Center" class="sapUiLargeMarginBottom">
+            <GenericTile
+                class="sapUiTinyMarginTop tileLayout"
+                header="{i18n>candidateLogin}"
+                press="onLogin"
+            />
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="{i18n>companyLogin}"
+                press="onLogin"
+            />
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="{i18n>register}"
+                press="onRegister"
+            />
+            </HBox>
+
+            <!-- Value Proposition -->
+            <HBox
+                justifyContent="SpaceAround"
+                width="100%"
+                class="sapUiLargeMarginBottom"
+            >
+                <VBox
+                    width="30%"
+                    alignItems="Center"
+                >
+                    <Title
+                        text="For Candidates"
+                        level="H3"
+                    />
+                    <Text
+                        text="Showcase your skills with AI reports."
+                        textAlign="Center"
+                    />
+                </VBox>
+                <VBox
+                    width="30%"
+                    alignItems="Center"
+                >
+                    <Title
+                        text="For Recruiters"
+                        level="H3"
+                    />
+                    <Text
+                        text="Save 80% screening time with AI shortlists."
+                        textAlign="Center"
+                    />
+                </VBox>
+                <VBox
+                    width="30%"
+                    alignItems="Center"
+                >
+                    <Title
+                        text="For Both"
+                        level="H3"
+                    />
+                    <Text
+                        text="Fair. Fast. Intelligent."
+                        textAlign="Center"
+                    />
+                </VBox>
+            </HBox>
+        </content>
+        <!-- Footer -->
+        <footer>
+            <Toolbar
+                design="Info"
+                class="sapUiSmallMarginTop"
+            >
+                <ToolbarSpacer />
+                <Button
+                    text="Terms"
+                    type="Transparent"
+                />
+                <Button
+                    text="Privacy"
+                    type="Transparent"
+                />
+                <Button
+                    text="Support"
+                    type="Transparent"
+                />
+                <ToolbarSpacer />
+            </Toolbar>
+        </footer>
     </Page>
 </mvc:View>

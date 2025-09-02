@@ -83,9 +83,23 @@
       "routes": [
         {
           "name": "RouteView1",
-          "pattern": ":?query:",
+          "pattern": "",
           "target": [
             "TargetView1"
+          ]
+        },
+        {
+          "name": "Login",
+          "pattern": "Login",
+          "target": [
+            "TargetLogin"
+          ]
+        },
+        {
+          "name": "Register",
+          "pattern": "Register",
+          "target": [
+            "TargetRegister"
           ]
         }
       ],
@@ -93,6 +107,14 @@
         "TargetView1": {
           "id": "View1",
           "name": "View1"
+        },
+        "TargetLogin": {
+          "id": "Login",
+          "name": "Login"
+        },
+        "TargetRegister": {
+          "id": "Register",
+          "name": "Register"
         }
       }
     },
