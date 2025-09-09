@@ -4,11 +4,11 @@ sap.ui.define([
 ], (Controller, UIComponent) => {
     "use strict";
 
-    return Controller.extend("com.questionanswer.controller.Login", {
+    return Controller.extend("com.questionanswer.controller.CandidateLogin", {
         onInit() {
         },
 
-        onSignUpPress: function () {
+        onLoginPress: function () {
             var oView = this.getView();
             var bValid = true;
 
@@ -30,12 +30,14 @@ sap.ui.define([
                 passwordInput.setValueState("None");
             }
 
-            if (!bValid) return;
+            if(!bValid) return;
 
             var oPayload = {
                 "email": emailInput.getValue(),
                 "password": passwordInput.getValue()
             };
+
+            return;
 
             fetch("https://ui5-qa-node-service.onrender.com/auth/company/login", {
                 method: "POST",
@@ -48,11 +50,7 @@ sap.ui.define([
                     if (!response.ok) {
                         throw new Error("HTTP error " + response.status);
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    this.getOwnerComponent().getModel("globalModel").setProperty("/company", data.value);
-                    this.navToCompanyDashboard();
+                   this.navToCompanyDashboard();
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
@@ -60,9 +58,9 @@ sap.ui.define([
                 });
         },
 
-        navToCompanyDashboard: function () {
-            var oRouter = UIComponent.getRouterFor(this);
-            oRouter.navTo("CompanyDashboard");
+        navToCompanyDashboard: function(){
+             var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("CompanyDashboard"); 
         }
     });
 });

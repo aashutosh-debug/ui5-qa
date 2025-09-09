@@ -2,32 +2,14 @@
     controllerName="com.questionanswer.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:core="sap.ui.core"
 >
     <Page
         id="page"
         class="sapUiResponsiveContentPadding"
     >
         <headerContent>
-            <Toolbar design="Transparent">
-                <Title
-                    text="AI Screen"
-                    level="H3"
-                    class="sapUiTinyMarginEnd"
-                />
-                <ToolbarSpacer />
-                <Button
-                    text="About"
-                    type="Transparent"
-                />
-                <Button
-                    text="How It Works"
-                    type="Transparent"
-                />
-                <Button
-                    text="Contact"
-                    type="Transparent"
-                />
-            </Toolbar>
+            <core:Fragment fragmentName="com.questionanswer.view.HeaderContent" type="XML" />
         </headerContent>
         <content>
             <VBox
@@ -56,7 +38,7 @@
             />
             <GenericTile
                 class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                header="{i18n>register}"
+                header="{i18n>companySignUp}"
                 press="onRegister"
             />
             </HBox>

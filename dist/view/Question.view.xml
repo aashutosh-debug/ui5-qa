@@ -1,0 +1,220 @@
+<mvc:View
+    xmlns:uxap="sap.uxap"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:t="sap.ui.table"
+    controllerName="com.questionanswer.controller.Question"
+>
+    <uxap:ObjectPageLayout
+        id="ObjectPageLayout"
+        showTitleInHeaderContent="true"
+        alwaysShowContentHeader="false"
+        preserveHeaderStateOnScroll="false"
+        headerContentPinnable="true"
+        isChildPage="true"
+        upperCaseAnchorBar="false"
+    >
+        <uxap:headerTitle>
+            <uxap:ObjectPageDynamicHeaderTitle>
+                <uxap:expandedHeading>
+                    <HBox>
+                        <Title
+                            text="{title}"
+                            wrapping="true"
+                        />
+                    </HBox>
+                </uxap:expandedHeading>
+
+                <uxap:snappedHeading>
+                    <FlexBox
+                        fitContainer="true"
+                        alignItems="Center"
+                    >
+                        <Title
+                            text="{title}"
+                            wrapping="true"
+                        />
+                    </FlexBox>
+                </uxap:snappedHeading>
+
+                <uxap:expandedContent>
+                    <Text text="{id}" />
+                </uxap:expandedContent>
+
+                <uxap:snappedContent>
+                    <Text text="{id}" />
+                </uxap:snappedContent>
+
+                <uxap:snappedTitleOnMobile>
+                    <Title text="{id}" />
+                </uxap:snappedTitleOnMobile>
+                <uxap:actions>
+                    <Button
+                        text="Edit"
+                        type="Emphasized"
+                        visible="{= !${questionModel>/editable} }"
+                        press=".onEditPress"
+                    />
+                    <Button
+                        text="Save"
+                        type="Emphasized"
+                        visible="{= ${questionModel>/editable} }"
+                        press=".onCancelPress"
+                    />
+                    <Button
+                        text="Cancel"
+                        type="Transparent"
+                        visible="{= ${questionModel>/editable} }"
+                        press=".onCancelPress"
+                    />
+                    <Button
+                        text="Delete"
+                        type="Transparent"
+                        visible="{= !${questionModel>/editable} }"
+                    />
+                    <Button
+                        text="Copy"
+                        type="Transparent"
+                        visible="{= !${questionModel>/editable} }"
+                    />
+                    <!-- <Button
+						icon="sap-icon://action"
+						type="Transparent"/> -->
+                </uxap:actions>
+            </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:sections>
+            <uxap:ObjectPageSection title="Job Details">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <form:SimpleForm
+                                id="displayJobDetails"
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="3"
+                                labelSpanL="3"
+                                labelSpanM="3"
+                                labelSpanS="12"
+                                adjustLabelSpan="false"
+                                emptySpanXL="0"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                emptySpanS="0"
+                                columnsXL="1"
+                                columnsL="1"
+                                columnsM="1"
+                                singleContainerFullSize="false"
+                                visible="{= !${questionModel>/editable} }"
+                            >
+                                <form:content>
+                                    <Label text="Job Title" />
+                                    <Text text="{title}" />
+                                    <Label text="Job Description" />
+                                    <Text text="{description}" />
+                                </form:content>
+                            </form:SimpleForm>
+                            <form:SimpleForm
+                                id="changeJobDetails"
+                                editable="false"
+                                layout="ResponsiveGridLayout"
+                                labelSpanXL="3"
+                                labelSpanL="3"
+                                labelSpanM="3"
+                                labelSpanS="12"
+                                adjustLabelSpan="false"
+                                emptySpanXL="0"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                emptySpanS="0"
+                                columnsXL="1"
+                                columnsL="1"
+                                columnsM="1"
+                                singleContainerFullSize="false"
+                                visible="{questionModel>/editable}"
+                            >
+                                <form:content>
+                                    <Label text="Job Title" />
+                                    <Input value="{title}" />
+                                    <Label text="Job Description" />
+                                    <Input value="{description}" />
+                                </form:content>
+                            </form:SimpleForm>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+
+            <uxap:ObjectPageSection title="Questions">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection>
+                        <uxap:blocks>
+                            <t:Table
+                                id="table1"
+                                rows="{/ProductCollection}"
+                                selectionMode="MultiToggle"
+                                ariaLabelledBy="title"
+                            >
+                                <t:extension>
+                                    <OverflowToolbar style="Clear">
+                                        <Title
+                                            id="title"
+                                            text="Products"
+                                        />
+                                        <ToolbarSpacer />
+                                        <Button
+                                            icon="sap-icon://add"
+                                            tooltip="Add Questions"
+                                            press=".onCreateQuestionOpenDialog"
+                                        />
+                                    </OverflowToolbar>
+                                </t:extension>
+
+                                <t:columns>
+                                    <t:Column width="11rem">
+                                        <Label text="Question Text" />
+                                        <t:template>
+                                            <Text
+                                                text="{question_text}"
+                                                wrapping="false"
+                                            />
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="11rem">
+                                        <Label text="Options" />
+                                        <t:template>
+                                            <Text
+                                                text="{options}"
+                                                wrapping="false"
+                                            />
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="11rem">
+                                        <Label text="Answers" />
+                                        <t:template>
+                                            <Text
+                                                text="{answer}"
+                                                wrapping="false"
+                                            />
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column width="11rem">
+                                        <Label text="Difficulty" />
+                                        <t:template>
+                                            <Text
+                                                text="{difficulty}"
+                                                wrapping="false"
+                                            />
+                                        </t:template>
+                                    </t:Column>
+                                </t:columns>
+                            </t:Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+        </uxap:sections>
+    </uxap:ObjectPageLayout>
+</mvc:View>

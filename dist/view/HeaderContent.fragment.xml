@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+     <Toolbar design="Transparent">
+                <Title
+                    text="AI Screen"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
+                />
+                <ToolbarSpacer />
+                <Button
+                    text="About"
+                    type="Transparent"
+                />
+                <Button
+                    text="How It Works"
+                    type="Transparent"
+                />
+                <Button
+                    text="Contact"
+                    type="Transparent"
+                />
+            </Toolbar>
+</core:FragmentDefinition>

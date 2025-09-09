@@ -1,0 +1,1 @@
+{"version":3,"file":"CandidateDashboard.controller.js","names":["sap","ui","define","Controller","UIComponent","extend","onInit"],"sources":["CandidateDashboard-dbg.controller.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACV,6BACC,2BACF,CAACC,EAAYC,KACZ,aAEA,OAAOD,EAAWE,OAAO,mDAAoD,CACzE,MAAAC,GACA","ignoreList":[]}

@@ -19,8 +19,20 @@ sap.ui.define([
             // set the device model
             this.setModel(models.createDeviceModel(), "device");
 
+              // Create and set the global JSON Model
+            var oGlobalModel = new sap.ui.model.json.JSONModel();
+            this.setModel(oGlobalModel, "globalModel");
+
+            // Load data into the global model
+            var oData = {
+                company: {}
+            };
+            oGlobalModel.setData(oData);
+
             // enable routing
             this.getRouter().initialize();
+
+           
         }
     });
 });

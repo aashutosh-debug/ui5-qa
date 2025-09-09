@@ -93,6 +93,20 @@
           "target": [
             "TargetRegister"
           ]
+        },
+         {
+          "name": "CompanyDashboard",
+          "pattern": "CompanyDashboard",
+          "target": [
+            "TargetCompanyDashboard"
+          ]
+        },
+         {
+          "name": "CandidateDashboard",
+          "pattern": "CandidateDashboard",
+          "target": [
+            "TargetCandidateDashboard"
+          ]
         }
       ],
       "targets": {
@@ -107,6 +121,14 @@
         "TargetRegister": {
           "id": "Register",
           "name": "Register"
+        },
+        "TargetCompanyDashboard": {
+          "id": "CompanyDashboard",
+          "name": "CompanyDashboard"
+        },
+        "TargetCandidateDashboard": {
+          "id": "CandidateDashboard",
+          "name": "CandidateDashboard"
         }
       }
     },
