@@ -110,10 +110,38 @@
           ]
         },
         {
+          "name": "CandidateLogin",
+          "pattern": "CandidateLogin",
+          "target": [
+            "TargetCandidateLogin"
+          ]
+        },
+        {
+          "name": "CandidateRegister",
+          "pattern": "CandidateRegister",
+          "target": [
+            "TargetCandidateRegister"
+          ]
+        },
+        {
           "name": "CandidateDashboard",
           "pattern": "CandidateDashboard",
           "target": [
             "TargetCandidateDashboard"
+          ]
+        },
+        {
+          "name": "ManageCandidates",
+          "pattern": "ManageCandidates",
+          "target": [
+            "TargetManageCandidates"
+          ]
+        },
+        {
+          "name": "Wizard",
+          "pattern": "Wizard/{id}/{testid}/{job}",
+          "target": [
+            "TargetWizard"
           ]
         }
       ],
@@ -134,9 +162,25 @@
           "id": "CompanyDashboard",
           "name": "CompanyDashboard"
         },
+        "TargetCandidateLogin": {
+          "id": "CandidateLogin",
+          "name": "CandidateLogin"
+        },
+        "TargetCandidateRegister": {
+          "id": "CandidateRegister",
+          "name": "CandidateRegister"
+        },
         "TargetCandidateDashboard": {
           "id": "CandidateDashboard",
           "name": "CandidateDashboard"
+        },
+        "TargetManageCandidates": {
+          "id": "ManageCandidates",
+          "name": "ManageCandidates"
+        },
+        "TargetWizard": {
+          "id": "Wizard",
+          "name": "Wizard"
         }
       }
     },

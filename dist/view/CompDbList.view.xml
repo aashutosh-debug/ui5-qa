@@ -25,7 +25,7 @@
                 <OverflowToolbar class="sapFDynamicPageAlignContent">
                     <ToolbarSpacer />
                     <SearchField
-                        search=".onSearch"
+                        liveChange=".onSearch"
                         width="17.5rem"
                     />
                     <OverflowToolbarButton

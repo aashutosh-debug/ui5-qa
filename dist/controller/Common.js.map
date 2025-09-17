@@ -1,0 +1,1 @@
+{"version":3,"file":"Common.js","names":["sap","ui","define","UIComponent","logout","that","oRouter","getRouterFor","navTo","addNumbers","a","b"],"sources":["Common-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACV,2BACD,SAAUC,GACT,aACA,MAAO,CACHC,OAAQ,SAAUC,GACd,IAAIC,EAAUH,EAAYI,aAAaF,GACvCC,EAAQE,MAAM,aAClB,EAEAC,WAAY,SAAUC,EAAGC,GACrB,OAAOD,EAAIC,CACf,EAER","ignoreList":[]}

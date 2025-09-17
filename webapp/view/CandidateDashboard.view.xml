@@ -2,12 +2,111 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table"
     controllerName="com.questionanswer.controller.CandidateDashboard"
 >
     <App id="app-CanD">
-        <Page
-            id="CandidateDashboardPage"
-        >
+        <Page id="CandidateDashboardPage">
+            <headerContent>
+                <core:Fragment
+                    fragmentName="com.questionanswer.view.HeaderContent"
+                    type="XML"
+                />
+            </headerContent>
+            <content>
+                <Title
+                    level="H3"
+                    titleStyle="H3"
+                    class="sapUiSmallMargin"
+                    text="{i18n>candidateDashboard}"
+                />
+                <ToolbarSpacer />
+                <t:Table
+                    id="candidateTestTable"
+                    rows="{candidatesTestModel>/rows}"
+                    selectionMode="None"
+                    ariaLabelledBy="title"
+                    visibleRowCount="5"
+                    class="sapUiSmallMargin"
+                >
+                    <t:extension>
+                        <OverflowToolbar style="Clear">
+                            <ToolbarSpacer />
+                            <Button
+                                icon="sap-icon://refresh"
+                                tooltip="Refresh"
+                                press=".onRefreshCandidates"
+                            />
+                        </OverflowToolbar>
+                    </t:extension>
+
+                    <t:columns>
+                        <t:Column width="11rem">
+                            <Label text="Job Title" />
+                            <t:template>
+                                <Label
+                                    text="{candidatesTestModel>title}"
+                                    wrapping="true"
+                                    design="Bold"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="auto">
+                            <Label text="Description" />
+                            <t:template>
+                                <Text
+                                    text="{candidatesTestModel>description}"
+                                    wrapping="false"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="auto">
+                            <Label text="Company" />
+                            <t:template>
+                                <Text
+                                    text="{candidatesTestModel>company}"
+                                    wrapping="false"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="auto">
+                            <Label text="Status" />
+                            <t:template>
+                                <Text
+                                    text="{candidatesTestModel>status}"
+                                    wrapping="false"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="6rem">
+                                        <Label text="" />
+                                        <t:template>
+                                            <HBox>
+                                                <Button text="Start Test" type="Emphasized" visible="{= ${candidatesTestModel>status} === 'Initial'}" class="sapUiTinyMarginBegin" press="onStartTest"/>
+                                            </HBox>
+                                        </t:template>
+                                    </t:Column>
+                        <!-- <t:Column width="auto">
+                            <Label text="Start Time" />
+                            <t:template>
+                                <Text
+                                    text="{candidatesTestModel>start_time}"
+                                    wrapping="false"
+                                />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="auto">
+                            <Label text="End Time" />
+                            <t:template>
+                                <Text
+                                    text="{candidatesTestModel>end_time}"
+                                    wrapping="false"
+                                />
+                            </t:template>
+                        </t:Column> -->
+                    </t:columns>
+                </t:Table>
+            </content>
         </Page>
     </App>
 </mvc:View>

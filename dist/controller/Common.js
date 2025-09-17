@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent"],function(e){"use strict";return{logout:function(n){var o=e.getRouterFor(n);o.navTo("RouteView1")},addNumbers:function(e,n){return e+n}}});
+//# sourceMappingURL=Common.js.map

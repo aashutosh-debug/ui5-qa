@@ -10,12 +10,12 @@
         <Page
             id="LoginPage"
         >
-            <headerContent>
+            <!-- <headerContent>
                 <core:Fragment
                     fragmentName="com.questionanswer.view.HeaderContent"
                     type="XML"
                 />
-            </headerContent>
+            </headerContent> -->
             <content>
                 <VBox
                     width="auto"

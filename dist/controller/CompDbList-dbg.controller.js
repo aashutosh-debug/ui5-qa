@@ -1,18 +1,31 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
-    "sap/f/library"
-], (Controller, UIComponent, fioriLibrary) => {
+    "sap/f/library",
+    "sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator",
+     "com/questionanswer/controller/Common"
+
+], (Controller, UIComponent, fioriLibrary, Filter, FilterOperator, Common) => {
     "use strict";
 
     return Controller.extend("com.questionanswer.controller.CompDbList", {
+        
         onInit() {
             //Write code to bind jobs data to list
             var id = this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
-            id=7
+            // id=7
             this.getJobs(id);
 
             this.oRouter = this.getOwnerComponent().getRouter();
+
+            sap.ui.getCore().getEventBus().subscribe("jobChannel", "refreshjobList", this._onRefreshMasterList, this);
+        },
+
+        onLogout: function(){ Common.logout(this)},
+
+        _onRefreshMasterList: function(){
+             this.onRefresh();
         },
 
         getJobs: function (id) {
@@ -43,6 +56,34 @@ sap.ui.define([
             var id = this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
             this.getJobs(id);
         },
+
+        onSearch: function (oEvent) {
+			// add filter for search
+			var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+
+            var oTable = this.byId("productsTable");
+            var oBinding = oTable.getBinding("items");
+
+			if (sQuery && sQuery.length > 0) {
+                var aFilters = [
+                    new sap.ui.model.Filter("id", sap.ui.model.FilterOperator.EQ, sQuery.toString()),
+                    new sap.ui.model.Filter("title", sap.ui.model.FilterOperator.Contains, sQuery.toString()),
+                    new sap.ui.model.Filter("description", sap.ui.model.FilterOperator.Contains, sQuery.toString())
+                ];
+
+                 var oCombinedFilter = new sap.ui.model.Filter({
+                    filters: aFilters,
+                    and: false // OR condition
+                    });
+                oBinding.filter(oCombinedFilter);
+			}
+            else {
+                oBinding.filter([]); // clear filters
+            }
+
+		},
+
 
         onCreateJobOpenDialog: function () {
             var oView = this.getView();
@@ -151,19 +192,17 @@ sap.ui.define([
 
             var oContext = oEvent.getSource().getBindingContext("JobModel");
 
-            if(!this.oDetailView){
-                this.oDetailView = sap.ui.view({
+                var oDetailView = sap.ui.view({
                     viewName: "com.questionanswer.view.Question",
                     type: "XML"
                 });
-                this.oDetailView.setModel(this.getView().getModel("JobModel"));
+                oDetailView.setModel(this.getView().getModel("JobModel"));
                 oFCL.removeAllMidColumnPages();
-                oFCL.addMidColumnPage(this.oDetailView);
-            }
+                oFCL.addMidColumnPage(oDetailView);
+                oDetailView.setBindingContext(oContext);
+                oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
+                sap.ui.getCore().getEventBus().publish("QuestionChannel", "refreshQuestionsOnLoad");
 
-            this.oDetailView.setBindingContext(oContext);
-           
-            oFCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
         }
     });
 });

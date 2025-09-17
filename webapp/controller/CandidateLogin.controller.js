@@ -1,12 +1,15 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent"
-], (Controller, UIComponent) => {
+    "sap/ui/core/UIComponent",
+    "com/questionanswer/controller/Common"
+], (Controller, UIComponent, Common) => {
     "use strict";
 
     return Controller.extend("com.questionanswer.controller.CandidateLogin", {
         onInit() {
         },
+
+        onLogout: function(){ Common.logout(this)},
 
         onLoginPress: function () {
             var oView = this.getView();
@@ -37,9 +40,7 @@ sap.ui.define([
                 "password": passwordInput.getValue()
             };
 
-            return;
-
-            fetch("https://ui5-qa-node-service.onrender.com/auth/company/login", {
+            fetch("https://ui5-qa-node-service.onrender.com/auth/candidate/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -47,10 +48,14 @@ sap.ui.define([
                 body: JSON.stringify(oPayload)
             })
                 .then(response => {
-                    if (!response.ok) {
+                     if (!response.ok) {
                         throw new Error("HTTP error " + response.status);
                     }
-                   this.navToCompanyDashboard();
+                    return response.json();
+                })
+                 .then(data => {
+                    this.getOwnerComponent().getModel("globalModel").setProperty("/candidate", data.value);
+                    this.navToCandidateDashboard();
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
@@ -58,9 +63,9 @@ sap.ui.define([
                 });
         },
 
-        navToCompanyDashboard: function(){
+        navToCandidateDashboard: function(){
              var oRouter = UIComponent.getRouterFor(this);
-            oRouter.navTo("CompanyDashboard"); 
+            oRouter.navTo("CandidateDashboard"); 
         }
     });
 });

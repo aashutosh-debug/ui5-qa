@@ -8,7 +8,16 @@
         <VBox class="sapUiSmallMargin" >
             
             <Label text="Enter Question"/>
-            <Input id="questionInput" width="100%" placeholder="Enter title" required="true"/>
+            <TextArea id="questionInput" width="100%" placeholder="Enter title" required="true"/>
+
+            <Label text="Enter Question"/>
+            <Select
+                id="questionType"
+				forceSelection="false"
+				selectedKey="mcq"
+                width="30%">
+					<core:Item key="mcq" text="MCQ's" />
+			</Select>
 
             <Label text="Options"/>
             <MultiInput id="optionsInput" showSuggestion="false" placeholder="Enter Options and press Enter" width="100%" showValueHelp="false"/>
@@ -19,7 +28,7 @@
         </VBox>
 
         <beginButton>
-            <Button text="Save" type="Emphasized" press=".onSaveDialog"/>
+            <Button text="Save" type="Emphasized" press=".onSaveQuestionsDialog"/>
         </beginButton>
         <endButton>
             <Button text="Cancel" press=".onCancelDialog"/>

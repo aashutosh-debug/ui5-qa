@@ -20,5 +20,10 @@
                     text="Contact"
                     type="Transparent"
                 />
+                <Button
+                    text="Logout"
+                    type="Transparent"
+                    press=".onLogout"
+                />
             </Toolbar>
 </core:FragmentDefinition>

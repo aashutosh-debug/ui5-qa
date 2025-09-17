@@ -7,16 +7,22 @@
     <Page
         id="page"
         class="sapUiResponsiveContentPadding"
+        showHeader="false"
     >
-        <headerContent>
+        <!-- <headerContent>
             <core:Fragment fragmentName="com.questionanswer.view.HeaderContent" type="XML" />
-        </headerContent>
+        </headerContent> -->
         <content>
-            <VBox
+          <FlexBox
+    wrap="Wrap"
+    justifyContent="Center"
+    class="sapUiTinyMarginTop sapUiMediumMarginBottom">
+    <items>
+            <!-- <VBox
                 width="auto"
                 alignItems="Center"
                 class="sapUiLargeMarginBottom"
-            >
+            > -->
                 <Title
                     level="H3"
                     titleStyle="H1"
@@ -24,24 +30,36 @@
                 />
                 <ToolbarSpacer />
                 <Text text="{i18n>sample}" />
-            </VBox>
-            <HBox alignItems="Center" justifyContent="Center" class="sapUiLargeMarginBottom">
+            <!-- </VBox> -->
+             </items>
+  </FlexBox>
+            <FlexBox
+    wrap="Wrap"
+    justifyContent="Center"
+    class="sapUiTinyMarginTop sapUiMediumMarginBottom">
+    <items>
             <GenericTile
-                class="sapUiTinyMarginTop tileLayout"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
                 header="{i18n>candidateLogin}"
-                press="onLogin"
+                press="onCandidateLogin"
             />
             <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                header="{i18n>candidateSignUp}"
+                press="onCandidateRegister"
+            />
+            <GenericTile
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
                 header="{i18n>companyLogin}"
                 press="onLogin"
             />
             <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
                 header="{i18n>companySignUp}"
                 press="onRegister"
             />
-            </HBox>
+             </items>
+  </FlexBox>
 
             <!-- Value Proposition -->
             <HBox

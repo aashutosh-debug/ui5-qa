@@ -18,6 +18,18 @@ sap.ui.define([
             // Get the router instance
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.navTo("Register"); 
-        }
+        },
+
+        onCandidateLogin: function(){
+            // Get the router instance
+            var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("CandidateLogin"); 
+        },
+
+        onCandidateRegister: function(){
+            // Get the router instance
+            var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("CandidateRegister"); 
+        },
     });
 });

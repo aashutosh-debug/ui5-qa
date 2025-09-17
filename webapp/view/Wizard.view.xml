@@ -1,0 +1,8 @@
+<mvc:View controllerName="com.questionanswer.controller.Wizard"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+   <Page id="pageWizard" title="Test">
+        <VBox id="wizardContainer"/>
+    </Page>
+</mvc:View>

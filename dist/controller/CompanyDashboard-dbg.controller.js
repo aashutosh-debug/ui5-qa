@@ -1,25 +1,29 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-     "sap/ui/core/UIComponent"
-], (Controller, UIComponent) => {
+     "sap/ui/core/UIComponent",
+	"com/questionanswer/controller/Common"
+
+], (Controller, UIComponent, Common) => {
     "use strict";
 
     return Controller.extend("com.questionanswer.controller.CompanyDashboard", {
 
         onInit: function () {
-			this.oOwnerComponent = this.getOwnerComponent();
-			this.oRouter = this.oOwnerComponent.getRouter();
-			this.oRouter.attachRouteMatched(this.onRouteMatched, this);
+			// this.oOwnerComponent = this.getOwnerComponent();
+			// this.oRouter = this.oOwnerComponent.getRouter();
+			// this.oRouter.attachRouteMatched(this.onRouteMatched, this);
 		},
 
-		onRouteMatched: function (oEvent) {
-			var sRouteName = oEvent.getParameter("name"),
-				oArguments = oEvent.getParameter("arguments");
+		onLogout: function(){ Common.logout(this)},
 
-			// Save the current route name
-			this.currentRouteName = sRouteName;
-			this.currentProduct = oArguments.product;
-		},
+		//onRouteMatched: function (oEvent) {
+			// var sRouteName = oEvent.getParameter("name"),
+			// 	oArguments = oEvent.getParameter("arguments");
+
+			// // Save the current route name
+			// this.currentRouteName = sRouteName;
+			// this.currentProduct = oArguments.product;
+		//},
 
 		// onStateChanged: function (oEvent) {
 		// 	var bIsNavigationArrow = oEvent.getParameter("isNavigationArrow"),
@@ -31,8 +35,8 @@ sap.ui.define([
 		// 	}
 		// },
 
-		onExit: function () {
-			this.oRouter.detachRouteMatched(this.onRouteMatched, this);
-		}
+		// onExit: function () {
+		// 	this.oRouter.detachRouteMatched(this.onRouteMatched, this);
+		// }
     });
 });
