@@ -18,26 +18,6 @@ sap.ui.define([
             this.getView().setModel(oQuestionModel, "questionModel");
             sap.ui.getCore().getEventBus().subscribe("QuestionChannel", "refreshQuestionsOnLoad", this.onRefreshDetails, this);
 
-            // initial model
-            // this.emptyRowCandidate = //{ email: "", score: "", status: "Initial" };
-            // {
-            //     id: null,
-            //     job_post_id: null,
-            //     candidate_id: null,
-            //     score: null,
-            //     start_time: null,
-            //     end_time: null,
-            //     status: null,
-            //     name: null,
-            //     email: null,
-            //     phone: null,
-            //     experience: null,
-            //     location: null,
-            //     skills: null
-            // }
-            // var oData = {
-            //     rows: [{...this.emptyRowCandidate}]
-            // };
             var oModel = new sap.ui.model.json.JSONModel({});
             this.getView().setModel(oModel, "candidatesModel");
         },
@@ -100,7 +80,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/jobs/" + context.id, {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -116,7 +97,9 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
+                    this.onLogout();
+
                 });
         },
 
@@ -174,7 +157,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/question/" + jobId, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
                 .then(response => {
@@ -189,13 +173,15 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Fetch GET error:", err);
+                    console.log("Fetch GET error:", err);
+                    this.onLogout();
+
                 });
         },
 
         onRefreshDetails: function () {
             this.onRefresh();
-            this.onRefreshCandidates();            
+            //this.onRefreshCandidates();            
         },
 
         onRefresh: function () {
@@ -257,7 +243,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/question", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -274,7 +261,9 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
+                    this.onLogout();
+
                 });
         },
 
@@ -327,7 +316,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/job/delete/" + job_id, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
                 .then(response => {
@@ -344,7 +334,9 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Fetch GET error:", err);
+                    console.log("Fetch GET error:", err);
+                    this.onLogout();
+
                 });
         },
 
@@ -364,7 +356,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/question/delete", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -379,7 +372,9 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
+                    this.onLogout();
+
                 });
         },
 
@@ -487,7 +482,8 @@ sap.ui.define([
                 fetch("https://ui5-qa-node-service.onrender.com/test", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + localStorage.getItem("token")
                     },
                     body: JSON.stringify(oPayload)
                 })
@@ -502,7 +498,9 @@ sap.ui.define([
                     })
                     .catch(err => {
                         sap.m.MessageToast.show("Error: " + err.message);
-                        console.error("Error:", err);
+                        console.log("Error:", err);
+                        this.onLogout();
+
                     });
             }
         },
@@ -512,7 +510,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/getCandidatesForJob/" + jobId, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
                 .then(response => {
@@ -527,7 +526,9 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Fetch GET error:", err);
+                    console.log("Fetch GET error:", err);
+                    this.onLogout();
+
                 });
         },
 
@@ -547,7 +548,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/test/deleteCandidates", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -564,11 +566,14 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
+                    this.onLogout();
                 });
         },
 
-        onLogout: function(){ Common.logout(this)},
+        onLogout: function(){ 
+            sap.ui.getCore().getEventBus().publish("LogoutChannel", "logoutCompany");
+        },
 
     });
 });

@@ -24,7 +24,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/question/" + job_post_id, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
                 .then(response => {
@@ -40,7 +41,7 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Fetch GET error:", err);
+                    console.log("Fetch GET error:", err);
                 });
         },
 
@@ -150,7 +151,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/submitanswers", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -161,7 +163,7 @@ sap.ui.define([
                     return response.json();
                 })
                 .then(data => {
-                    console.log("Submit clicked!");
+                    // console.log("Submit clicked!");
                     MessageBox.success(
                     "Thanks for taking test. ",
                     {
@@ -176,7 +178,7 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
                 });
 
             
@@ -185,6 +187,11 @@ sap.ui.define([
        navToCandidateDashboard: function(){
              var oRouter = UIComponent.getRouterFor(this);
             oRouter.navTo("CandidateDashboard"); 
+        },
+
+        navToSupport: function(){
+             var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("Support"); 
         }
 
     });

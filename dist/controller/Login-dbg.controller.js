@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/UIComponent"
-], (Controller, UIComponent) => {
+    "sap/ui/core/UIComponent",
+    "sap/m/MessageBox",
+], (Controller, UIComponent, MessageBox) => {
     "use strict";
 
     return Controller.extend("com.questionanswer.controller.Login", {
@@ -44,19 +45,25 @@ sap.ui.define([
                 },
                 body: JSON.stringify(oPayload)
             })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("HTTP error " + response.status);
-                    }
+                .then((response) => {
+                    // if (!response.ok) {
+                    //     throw new Error("HTTP error " + response.status);
+                    // }
                     return response.json();
                 })
                 .then(data => {
-                    this.getOwnerComponent().getModel("globalModel").setProperty("/company", data.value);
-                    this.navToCompanyDashboard();
+                    if(!data.success){
+                        MessageBox.error(data.message); 
+                    }
+                    else{
+                        localStorage.setItem("token", data.token);
+                        // this.getOwnerComponent().getModel("globalModel").setProperty("/company", data.value);
+                        this.navToCompanyDashboard();
+                    }
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
                 });
         },
 

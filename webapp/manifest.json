@@ -133,6 +133,13 @@
           "target": [
             "TargetWizard"
           ]
+        },
+        {
+          "name": "Support",
+          "pattern": "Support",
+          "target": [
+            "TargetSupport"
+          ]
         }
       ],
       "targets": {
@@ -171,6 +178,10 @@
         "TargetWizard": {
           "id": "Wizard",
           "name": "Wizard"
+        },
+        "TargetSupport": {
+          "id": "Support",
+          "name": "Support"
         }
       }
     },

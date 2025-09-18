@@ -13,12 +13,9 @@ sap.ui.define([
         
         onInit() {
             //Write code to bind jobs data to list
-            var id = this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
-            // id=7
-            this.getJobs(id);
-
+            this.user = Common._decodeToken(localStorage.getItem("token"));// this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
+            this.getJobs(this.user.user.id);
             this.oRouter = this.getOwnerComponent().getRouter();
-
             sap.ui.getCore().getEventBus().subscribe("jobChannel", "refreshjobList", this._onRefreshMasterList, this);
         },
 
@@ -32,7 +29,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/jobs/" + id, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             })
                 .then(response => {
@@ -42,7 +40,6 @@ sap.ui.define([
                     return response.json();
                 })
                 .then(data => {
-                    console.log("Users from backend:", data);
                     var ocompanyJobModel = new sap.ui.model.json.JSONModel(data);
                     this.getView().setModel(ocompanyJobModel, "JobModel");
                 })
@@ -53,8 +50,8 @@ sap.ui.define([
         },
 
         onRefresh: function () {
-            var id = this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
-            this.getJobs(id);
+            // var id = this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
+            this.getJobs(this.user.user.id);
         },
 
         onSearch: function (oEvent) {
@@ -125,7 +122,8 @@ sap.ui.define([
         },
 
         onSaveDialog: function () {
-            var id = this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
+            
+            var id = this.user.user.id;//this.getOwnerComponent().getModel("globalModel").getProperty("/company/id");
             var oView = this.getView();
             var bValid = true;
 
@@ -158,7 +156,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/addjobs", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -169,14 +168,12 @@ sap.ui.define([
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
                     this.onRefresh();
-                    // Close dialog
                     this.onCancelDialog();
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
                 });
         },
 

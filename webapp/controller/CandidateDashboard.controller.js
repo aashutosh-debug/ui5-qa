@@ -32,12 +32,13 @@ sap.ui.define([
         },
 
         onRefreshCandidates: function(){
-            var context = this.getOwnerComponent().getModel("globalModel").getProperty("/candidate");
-            if(!context){
-                this.navToCandidateLogin();
-                return;
-            }
-            this.getCandidateForJob(context.email);
+            this.user = Common._decodeToken(localStorage.getItem("token"));
+            // var context = this.getOwnerComponent().getModel("globalModel").getProperty("/candidate");
+            // if(!this.user.user.id){
+            //     this.navToCandidateLogin();
+            //     return;
+            // }
+            this.getCandidateForJob(this.user.user.email);
         },
 
         getCandidateForJob: function (candidate_Id) {
@@ -49,7 +50,8 @@ sap.ui.define([
             fetch("https://ui5-qa-node-service.onrender.com/test/candidate/", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 },
                 body: JSON.stringify(oPayload)
             })
@@ -65,7 +67,8 @@ sap.ui.define([
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Fetch GET error:", err);
+                    console.log("Fetch GET error:", err);
+                    this.onLogout();
                 });
         },
 
@@ -90,5 +93,10 @@ sap.ui.define([
         },
 
         onLogout: function(){ Common.logout(this)},
+
+        navToSupport: function(){
+             var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("Support"); 
+        }
     });
 });

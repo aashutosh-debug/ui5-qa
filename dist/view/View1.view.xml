@@ -16,7 +16,7 @@
           <FlexBox
     wrap="Wrap"
     justifyContent="Center"
-    class="sapUiTinyMarginTop sapUiMediumMarginBottom">
+    class="sapUiMediumMarginTop sapUiMediumMarginBottom">
     <items>
             <!-- <VBox
                 width="auto"
@@ -109,7 +109,7 @@
             </HBox>
         </content>
         <!-- Footer -->
-        <footer>
+        <!-- <footer>
             <Toolbar
                 design="Info"
                 class="sapUiSmallMarginTop"
@@ -129,6 +129,6 @@
                 />
                 <ToolbarSpacer />
             </Toolbar>
-        </footer>
+        </footer> -->
     </Page>
 </mvc:View>

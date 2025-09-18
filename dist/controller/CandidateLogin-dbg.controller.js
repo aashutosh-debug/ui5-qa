@@ -48,18 +48,26 @@ sap.ui.define([
                 body: JSON.stringify(oPayload)
             })
                 .then(response => {
-                     if (!response.ok) {
-                        throw new Error("HTTP error " + response.status);
-                    }
+                    //  if (!response.ok) {
+                    //     throw new Error("HTTP error " + response.status);
+                    // }
                     return response.json();
                 })
                  .then(data => {
-                    this.getOwnerComponent().getModel("globalModel").setProperty("/candidate", data.value);
-                    this.navToCandidateDashboard();
+                    // this.getOwnerComponent().getModel("globalModel").setProperty("/candidate", data.value);
+                    // this.navToCandidateDashboard();
+
+                    if(!data.success){
+                        MessageBox.error(data.message); 
+                    }
+                    else{
+                        localStorage.setItem("token", data.token);
+                        this.navToCandidateDashboard();
+                    }
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
-                    console.error("Error:", err);
+                    console.log("Error:", err);
                 });
         },
 

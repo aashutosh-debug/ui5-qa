@@ -41,57 +41,7 @@
                         press=".onRefresh"
                     />
                 </OverflowToolbar>
-                <!-- <t:Table
-                    id="table"
-                    rows="{JobModel>/value}"
-                    selectionMode="MultiToggle"
-                    ariaLabelledBy="title"
-                >
-                    <t:columns>
-						<t:Column>
-                            <Label text="Job ID" />
-                            <t:template>
-                                <Text
-                                    text="{JobModel>id}"
-                                    wrapping="false"
-                                />
-                            </t:template>
-                        </t:Column>
-                        <t:Column>
-                            <Label text="Title" />
-                            <t:template>
-                                <Text
-                                    text="{JobModel>title}"
-                                    wrapping="false"
-                                />
-                            </t:template>
-                        </t:Column>
-						<t:Column>
-                            <Label text="Description" />
-                            <t:template>
-                                <Text
-                                    text="{JobModel>description}"
-                                    wrapping="false"
-                                />
-                            </t:template>
-                        </t:Column>
-						<t:Column>
-                            <Label text="Created At" />
-                            <t:template>
-                                <Text
-                                    text="{JobModel>created_at}"
-                                    wrapping="false"
-                                />
-                            </t:template>
-                        </t:Column>
-						<t:Column width="50px" hAlign="Center">
-                            <Label text="" />
-                            <t:template>
-                                 <Button icon="sap-icon://navigation-right-arrow" type="Transparent" press=".openQuestionView"/>
-                            </t:template>
-                        </t:Column>
-                    </t:columns>
-                </t:Table> -->
+                
 
                 <Table
 					id="productsTable"
