@@ -6,60 +6,85 @@
 >
     <Page
         id="page"
-        class="sapUiResponsiveContentPadding"
         showHeader="false"
     >
-        <!-- <headerContent>
-            <core:Fragment fragmentName="com.questionanswer.view.HeaderContent" type="XML" />
-        </headerContent> -->
         <content>
-          <FlexBox
-    wrap="Wrap"
-    justifyContent="Center"
-    class="sapUiMediumMarginTop sapUiMediumMarginBottom">
-    <items>
-            <!-- <VBox
-                width="auto"
-                alignItems="Center"
-                class="sapUiLargeMarginBottom"
-            > -->
-                <Title
-                    level="H3"
-                    titleStyle="H1"
-                    text="{i18n>smfs}"
-                />
-                <ToolbarSpacer />
-                <Text text="{i18n>sample}" />
-            <!-- </VBox> -->
-             </items>
-  </FlexBox>
+
+            <VBox class="sapUiMediumMarginTop sapUiSmallMargin"
+                    width="100%"
+                    alignItems="Center"
+                >
+                    <Title
+                        text="{i18n>smfs}"
+                        level="H3"
+                        titleStyle="H1"
+                        wrapping="true"
+                    />
+                    <Text
+                        text="{i18n>sample}"
+                        textAlign="Center"
+                    />
+                </VBox>
+                
+            <!-- <FlexBox
+                wrap="Wrap"
+                justifyContent="Center"
+                class="sapUiMediumMarginTop sapUiMediumMarginBottom"
+            >
+                <items>
+                    <Title
+                        level="H3"
+                        titleStyle="H1"
+                        text="{i18n>smfs}"
+                    />
+                    <ToolbarSpacer />
+                    <Text text="{i18n>sample}" />
+                </items>
+            </FlexBox> -->
             <FlexBox
-    wrap="Wrap"
-    justifyContent="Center"
-    class="sapUiTinyMarginTop sapUiMediumMarginBottom">
-    <items>
-            <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
-                header="{i18n>candidateLogin}"
-                press="onCandidateLogin"
-            />
-            <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
-                header="{i18n>candidateSignUp}"
-                press="onCandidateRegister"
-            />
-            <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
-                header="{i18n>companyLogin}"
-                press="onLogin"
-            />
-            <GenericTile
-                class="sapUiTinyMarginBegin sapUiTinyMarginTop"
-                header="{i18n>companySignUp}"
-                press="onRegister"
-            />
-             </items>
-  </FlexBox>
+                wrap="Wrap"
+                justifyContent="Center"
+                class="sapUiMediumMarginTop sapUiLargeMarginBottom"
+            >
+                <items>
+                    <GenericTile
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                        header="{i18n>candidateLogin}"
+                        press="onCandidateLogin"
+                    >
+                    <TileContent>
+                        <ImageContent src="/css/login.png" />
+                    </TileContent>
+                    </GenericTile>
+                    <GenericTile
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                        header="{i18n>candidateSignUp}"
+                        press="onCandidateRegister"
+                    >
+                    <TileContent>
+                        <ImageContent src="/css/signup.png" />
+                    </TileContent>
+                    </GenericTile>
+                    <GenericTile
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                        header="{i18n>companyLogin}"
+                        press="onLogin"
+                    >
+                    <TileContent>
+                        <ImageContent src="/css/login.png" />
+                    </TileContent>
+                    </GenericTile>
+                    <GenericTile
+                        class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+                        header="{i18n>companySignUp}"
+                        press="onRegister"
+                    >
+                    <TileContent>
+                        <ImageContent src="/css/signup.png" />
+                    </TileContent>
+                    </GenericTile>
+                </items>
+            </FlexBox>
 
             <!-- Value Proposition -->
             <HBox

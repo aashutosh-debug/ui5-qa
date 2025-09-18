@@ -133,6 +133,6 @@ sap.ui.define([
                 });
         },
 
-
+        onLogout: function(){ Common.logout(this)},
     });
 });

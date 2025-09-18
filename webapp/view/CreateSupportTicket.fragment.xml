@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" width="50%">
     <Dialog
         id="myDialogCS"
-        title="Create Support Ticket"
+        title="Contact Support"
         contentWidth="50%"
         afterClose=".onDialogClose">
 
