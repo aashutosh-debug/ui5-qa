@@ -8,13 +8,20 @@
 >
     <App id="App-CandidateRegister">
         <Page id="CandidateRegister">
-            <!-- <headerContent>
-                <core:Fragment
-                    fragmentName="com.questionanswer.view.HeaderContent"
-                    type="XML"
+            <headerContent>
+                <Image
+                    src="../css/talent.png"
+                    width="2rem"
                 />
-            </headerContent> -->
-            <content>
+                <Title
+                    text="{i18n>companyName}"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
+                />
+                <ToolbarSpacer />
+            </headerContent>
+
+            <!-- <content>
                 <VBox
                     width="auto"
                     alignItems="Center"
@@ -100,6 +107,125 @@
                         </f:content>
                     </f:SimpleForm>
                 </VBox>
+            </content> -->
+
+            <content>
+                <!-- FlexBox wrapper for full-page centering -->
+                <!-- <FlexBox
+                    width="100%"
+                    height="100%"
+                    justifyContent="Center"
+                    alignItems="Center"
+                    direction="Column"
+                > -->
+                    <!-- Title -->
+                    <!-- <VBox
+                        alignItems="Center"
+                        class="sapUiLargeMarginBottom"
+                    >
+                        <Title
+                            level="H3"
+                            titleStyle="H2"
+                            text="{i18n>candidateSignUp}"
+                        />
+                    </VBox> -->
+
+                    <!-- Form -->
+                    <VBox class="sapUiSmallMargin">
+                        <f:SimpleForm
+                            id="SimpleFormChange354"
+                           editable="true"
+			layout="ResponsiveGridLayout"
+			title="{i18n>candidateSignUp}"
+			labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false"
+                        >
+                            <f:content>
+                                <Label text="Full Name" />
+                                <Input
+                                    id="fullName"
+                                    placeholder="Full Name"
+                                    required="true"
+                                    width="100%"
+                                />
+
+                                <Label text="Phone" />
+                                <Input
+                                    id="phone"
+                                    placeholder="Phone Number"
+                                    type="Tel"
+                                    required="true"
+                                    width="100%"
+                                />
+
+                                <Label text="Location" />
+                                <Input
+                                    id="location"
+                                    placeholder="Location (City, Country)"
+                                    required="true"
+                                    width="100%"
+                                />
+
+                                <Label text="Experience" />
+                                <Input
+                                    id="experience"
+                                    placeholder="Years of Experience"
+                                    type="Number"
+                                    required="true"
+                                    width="100%"
+                                />
+
+                                <Label text="Skills" />
+                                <MultiInput
+                                    id="skillsInput"
+                                    required="false"
+                                    showSuggestion="false"
+                                    placeholder="Skills"
+                                    width="100%"
+                                    showValueHelp="false"
+                                />
+
+                                <Label text="Email" />
+                                <Input
+                                    id="email"
+                                    placeholder="Email"
+                                    type="Email"
+                                    required="true"
+                                    width="100%"
+                                />
+
+                                <Label text="Password" />
+                                <Input
+                                    id="password"
+                                    placeholder="Password"
+                                    type="Password"
+                                    required="true"
+                                    width="100%"
+                                />
+
+                                <Label text="" />
+                                <Button
+                                    text="SignUp"
+                                    type="Emphasized"
+                                    press="onSignUpPress"
+                                    width="100%"
+                                    class="sapUiSmallMarginTop"
+                                />
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                <!-- </FlexBox> -->
             </content>
         </Page>
     </App>

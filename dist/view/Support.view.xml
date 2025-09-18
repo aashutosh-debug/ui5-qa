@@ -36,11 +36,12 @@
                 >
                  <t:extension>
                         <OverflowToolbar style="Clear">
-                            <Title text="Tickets"/>
+                            <!-- <Title text="Tickets"/> -->
                             <ToolbarSpacer />
                             <Button
-                                icon="sap-icon://add"
-                                tooltip="Create Support Ticket"
+                                type="Emphasized"
+                                text="Contact Support"
+                                tooltip="Contact Support"
                                 press=".onCreateSupportTicket"
                             />
                             <Button

@@ -10,14 +10,19 @@
         <Page
             id="LoginPage"
         >
-            <!-- <headerContent>
-                <core:Fragment
-                    fragmentName="com.questionanswer.view.HeaderContent"
-                    type="XML"
+            <headerContent>
+              <Image src="../css/talent.png" width="2rem"></Image>
+                <Title
+                    text="{i18n>companyName}"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
                 />
-            </headerContent> -->
+                <ToolbarSpacer />
+
+            </headerContent>
+            
             <content>
-                <VBox
+                <!-- <VBox
                     width="auto"
                     alignItems="Center"
                     class="sapUiLargeMarginTop"
@@ -28,24 +33,25 @@
                         text="{i18n>candidateLogin}"
                     />
                 </VBox>
-                <ToolbarSpacer />
+                <ToolbarSpacer /> -->
                 <VBox class="sapUiSmallMargin">
                     <f:SimpleForm
                         id="SimpleFormChangeLogin"
+                        title="{i18n>candidateLogin}"
                         editable="true"
                         layout="ResponsiveGridLayout"
-                        labelSpanXL="3"
-                        labelSpanL="3"
-                        labelSpanM="3"
-                        labelSpanS="12"
-                        adjustLabelSpan="false"
-                        emptySpanXL="4"
-                        emptySpanL="4"
-                        emptySpanM="4"
-                        emptySpanS="0"
-                        columnsXL="1"
-                        columnsL="1"
-                        columnsM="1"
+                        labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
                         singleContainerFullSize="false"
                     >
                         <f:content>
