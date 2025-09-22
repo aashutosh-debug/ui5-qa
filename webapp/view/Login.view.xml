@@ -76,6 +76,10 @@
                                 press="onSignUpPress"
                                 class="sapUiSmallMarginTop"
                             />
+                            <Label text=""></Label>
+                             <HBox justifyContent="End">
+                                <Link text="Forgot Password" press="onForgotPassword"/>
+                            </HBox>
                         </f:content>
                     </f:SimpleForm>
                 </VBox>
