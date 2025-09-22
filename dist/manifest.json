@@ -150,6 +150,20 @@
           "target": [
             "TargetSupport"
           ]
+        },
+        {
+          "name": "ForgotPassword",
+          "pattern": "ForgotPassword/{type}",
+          "target": [
+            "TargetForgotPassword"
+          ]
+        },
+        {
+          "name": "ResetPassword",
+          "pattern": "ResetPassword/{token}",
+          "target": [
+            "TargetResetPassword"
+          ]
         }
       ],
       "targets": {
@@ -192,6 +206,14 @@
         "TargetSupport": {
           "id": "Support",
           "name": "Support"
+        },
+        "TargetForgotPassword": {
+          "id": "ForgotPassword",
+          "name": "ForgotPassword"
+        },
+        "TargetResetPassword": {
+          "id": "ResetPassword",
+          "name": "ResetPassword"
         }
       }
     },

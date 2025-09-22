@@ -70,6 +70,13 @@ sap.ui.define([
         navToCompanyDashboard: function () {
             var oRouter = UIComponent.getRouterFor(this);
             oRouter.navTo("CompanyDashboard");
-        }
+        },
+
+        onForgotPassword: function(){
+             var oRouter = UIComponent.getRouterFor(this);
+            oRouter.navTo("ForgotPassword", {
+                    type: "C"
+            }); 
+        },
     });
 });
