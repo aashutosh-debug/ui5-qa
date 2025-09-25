@@ -60,6 +60,10 @@ sap.ui.define([
                 body: JSON.stringify(oPayload)
             })
                 .then(response => {
+                    if(response.status === 403){
+                        MessageBox.error("Link expired! Try again forgetting password."); 
+                        return;
+                    }
                     return response.json();
                 })
                  .then(data => {

@@ -3,14 +3,17 @@ sap.ui.define([
     "sap/m/MessageBox",
     "sap/f/library",
     "sap/ui/core/UIComponent",
-     "com/questionanswer/controller/Common"
-
-], function (Controller, MessageBox, fioriLibrary, UIComponent, Common) {
+    "com/questionanswer/controller/Common",
+    "sap/ui/core/BusyIndicator"
+], function (Controller, MessageBox, fioriLibrary, UIComponent, Common, BusyIndicator) {
     "use strict";
 
     return Controller.extend("com.questionanswer.controller.Question", {
 
         onInit: function () {
+
+            this.user = Common._decodeToken(localStorage.getItem("token"))
+
             var oQuestionModel = new sap.ui.model.json.JSONModel({
                 editable: false,
                 midColumnFullScreen: false
@@ -20,7 +23,31 @@ sap.ui.define([
 
             var oModel = new sap.ui.model.json.JSONModel({});
             this.getView().setModel(oModel, "candidatesModel");
+
+            this.user = Common._decodeToken(localStorage.getItem("token"))
         },
+
+        onAfterRendering: function(){
+        // var oMultiInput = this.getView().byId("skillsInputQ");
+        // if(oMultiInput) {
+        //     oMultiInput.addValidator(function (args) {
+        //         return new sap.m.Token({
+        //             key: args.text,
+        //             text: args.text
+        //         });
+        //     });
+        // }
+
+        var oMultiInput = this.getView().byId("skillsInputQC");
+        if(oMultiInput) {
+            oMultiInput.addValidator(function (args) {
+                return new sap.m.Token({
+                    key: args.text,
+                    text: args.text
+                });
+            });
+        }
+    },
 
         handleFullScreen: function () {
             var oFCL = this.getView().getParent().getParent();
@@ -68,11 +95,20 @@ sap.ui.define([
                 descInput.setValueState("None");
             }
 
+            var skillsInput = oView.byId("skillsInputQC");
+            if (!skillsInput.getTokens().length === 0) {
+                skillsInput.setValueState("Error");
+                bValid = false;
+            } else {
+                skillsInput.setValueState("None");
+            }
+
             if (!bValid) return;
 
             var oPayload = {
                 "title": titleInput.getValue(),
-                "description": descInput.getValue()
+                "description": descInput.getValue(),
+                "skills": skillsInput.getTokens().map(function (oToken) { return oToken.getText(); })
             };
 
             var context = this.getView().getModel().getProperty(this.getView().getBindingContext().getPath());
@@ -93,7 +129,7 @@ sap.ui.define([
                 })
                 .then(data => {
                     sap.ui.getCore().getEventBus().publish("jobChannel", "refreshjobList");
-
+                    oView.getModel().setProperty(oView.getBindingContext().getPath(), data.jobs);
                 })
                 .catch(err => {
                     sap.m.MessageToast.show("Error: " + err.message);
@@ -186,15 +222,33 @@ sap.ui.define([
 
         onRefresh: function () {
             var context = this.getView().getModel().getProperty(this.getView().getBindingContext().getPath());
+            // context.getModel().refresh(true);
+
             this.getQuestions(context.id);
             this.getCandidateForJob(context.id);
+
+            // var oMultiInput = this.getView().byId("skillsInputQ");
+            // for(var i = 0; i < context.skills.length; i++){
+            //     oMultiInput.addToken(new sap.m.Token({
+            //         key: context.skills[i],
+            //         text: context.skills[i]
+            //     }));
+            // }
+
+            var oMultiInput = this.getView().byId("skillsInputQC");
+            for(var i = 0; i < context.skills.length; i++){
+                oMultiInput.addToken(new sap.m.Token({
+                    key: context.skills[i],
+                    text: context.skills[i]
+                }));
+            }
         },
 
         onSaveQuestionsDialog: function () {
             var object = this.getView().getBindingContext().getObject();
             var company_id = object.company_id,
                 job_id = object.id,
-                loggedInUser = this.getView().getModel("globalModel").getProperty("/company");
+                loggedInUser = this.user.user;//this.getView().getModel("globalModel").getProperty("/company");
 
             var oView = this.getView();
             var bValid = true;
@@ -255,7 +309,7 @@ sap.ui.define([
                     return response.json();
                 })
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     this.onRefresh();
                     this.onCancelDialog();
                 })
@@ -390,7 +444,7 @@ sap.ui.define([
 
         //Candidates
 
-        onRefreshCandidates: function(){
+        onRefreshCandidates: function () {
             var context = this.getView().getModel().getProperty(this.getView().getBindingContext().getPath());
             this.getCandidateForJob(context.id);
         },
@@ -571,9 +625,280 @@ sap.ui.define([
                 });
         },
 
-        onLogout: function(){ 
+        onLogout: function () {
             sap.ui.getCore().getEventBus().publish("LogoutChannel", "logoutCompany");
         },
+
+        onGenerateQuestionUsingAI: function () {
+            try{
+                var d = {
+    "success": true,
+    "value": [
+        {
+            "q": "Which of the following is a core concept of React?",
+            "o": [
+                "Virtual DOM",
+                "Two-way data binding",
+                "Angular directives",
+                "Component-based architecture"
+            ],
+            "a": [
+                0,
+                3
+            ]
+        },
+        {
+            "q": "What is the purpose of JSX in React?",
+            "o": [
+                "To handle server-side rendering",
+                "To write HTML-like syntax within JavaScript",
+                "To manage state updates",
+                "To optimize database queries"
+            ],
+            "a": [
+                1
+            ]
+        },
+        {
+            "q": "In HTML, which tag is used to create an unordered list?",
+            "o": [
+                "<ol>",
+                "<li>",
+                "<ul>",
+                "<dl>"
+            ],
+            "a": [
+                2
+            ]
+        },
+        {
+            "q": "Which method is used to change the state of a React component?",
+            "o": [
+                "setState()",
+                "getState()",
+                "this.state = new_state",
+                "updateState()"
+            ],
+            "a": [
+                0
+            ]
+        },
+        {
+            "q": "What is the role of the `useEffect` hook in React?",
+            "o": [
+                "To manage component's state",
+                "To perform side effects (e.g., data fetching)",
+                "To handle user input",
+                "To define the component's UI"
+            ],
+            "a": [
+                1
+            ]
+        },
+        {
+            "q": "Which of the following is a valid way to include JavaScript in an HTML file?",
+            "o": [
+                "<script src=\"script.js\"></script>",
+                "<javascript src=\"script.js\"></javascript>",
+                "<link rel=\"script\" href=\"script.js\">",
+                "<js src=\"script.js\"></js>"
+            ],
+            "a": [
+                0
+            ]
+        },
+        {
+            "q": "What is the purpose of event delegation in JavaScript?",
+            "o": [
+                "To assign multiple event listeners to a single element.",
+                "To handle events for multiple elements using a single event listener on a parent element.",
+                "To prevent event bubbling.",
+                "To optimize DOM manipulation."
+            ],
+            "a": [
+                1
+            ]
+        },
+        {
+            "q": "How do you pass data from a parent component to a child component in React?",
+            "o": [
+                "Using props",
+                "Using state",
+                "Using context",
+                "Using local storage"
+            ],
+            "a": [
+                0
+            ]
+        },
+        {
+            "q": "What is the difference between `let` and `const` in JavaScript?",
+            "o": [
+                "`let` is used for variables that can be reassigned, `const` for variables that cannot.",
+                "`const` is used for variables that can be reassigned, `let` for variables that cannot.",
+                "Both are the same.",
+                "`let` is used only inside a function"
+            ],
+            "a": [
+                0
+            ]
+        },
+        {
+            "q": "Which HTML tag is used to define the main content of a webpage?",
+            "o": [
+                "<header>",
+                "<main>",
+                "<nav>",
+                "<footer>"
+            ],
+            "a": [
+                1
+            ]
+        }
+    ]
+};
+                this.openAIQuestionFragment(d);
+                return;
+            BusyIndicator.show();
+            var object = this.getView().getBindingContext().getObject();
+            var company_id = object.company_id;
+
+             var oPayload = {
+                "company_id": company_id,
+                "skills": object.skills
+            };
+
+            fetch("https://ui5-qa-node-service.onrender.com/getquesai", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
+                body: JSON.stringify(oPayload)
+            })
+                .then(response => {
+                    // if (!response.ok) {
+                    //     throw new Error("HTTP error " + response.status);
+                    // }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log(data);
+                    if(!data.success){
+                        var err = JSON.parse(data.error);
+                        sap.m.MessageBox.error(err.error.message);
+                    }
+                    else{
+                        this.openAIQuestionFragment(data.value);
+                    }
+                    BusyIndicator.hide();
+                })
+                .catch(err => {
+                    sap.m.MessageToast.show("Error: " + err.message);
+                    console.log("Error:", err);
+                    BusyIndicator.hide();
+                    // this.onLogout();
+                });
+            }
+            catch(e){
+                BusyIndicator.hide();
+            }
+        },
+
+        openAIQuestionFragment: function(data){
+
+            data.value.forEach((item, idx) => {
+                item.index = idx + 1;
+                item.newo = [];
+                item.newa = [];
+                item.o.forEach((opt, optIdx) => {
+                    var v = {text: opt, icon: "sap-icon://decline"};
+                    if(item.a.indexOf(optIdx) !== -1){
+                        v.icon = "sap-icon://accept";
+                        item.newa.push(item.o[optIdx]);
+                    }
+                    item.newo.push(v);
+                })
+            });
+
+            var oView = this.getView();
+            var aiQModel = new sap.ui.model.json.JSONModel(data);
+            oView.setModel(aiQModel, "aiQModel");
+
+            if (!this._aiQDialog) {
+                this._aiQDialog = sap.ui.core.Fragment.load({
+                    id: oView.getId(),
+                    name: "com.questionanswer.view.AIQues", // <-- path to Dialog.fragment.xml
+                    controller: this
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    return oDialog;
+                });
+            }
+
+            this._aiQDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+
+        onCancelAIQuesDialog: function () {
+            this.byId("myDialogAI").close();
+            this.getView().getModel("aiQModel").setData(null);
+        },
+
+        onDialogAIClose: function () {
+            // Cleanup if required
+            this.getView().getModel("aiQModel").setData(null);
+        },
+
+        onUseAIQuesDialog: function(){
+            var object = this.getView().getBindingContext().getObject();
+            var company_id = object.company_id,
+                job_id = object.id,
+                loggedInUser = this.user.user;//this.getView().getModel("globalModel").getProperty("/company");
+
+            var aData = this.getView().getModel("aiQModel").getData().value,
+                oPayload = [];
+            for(var i = 0; i < aData.length; i++){
+                var oP = {
+                    "question_text": aData[i].q,
+                    "question_type": "mcq",
+                    "company_id": company_id,
+                    "job_id": job_id,
+                    "difficulty": "easy",
+                    "created_by": loggedInUser.name,
+                    "options": aData[i].o,
+                    "answers": aData[i].newa
+                };
+                oPayload.push(oP);
+            }
+
+            fetch("https://ui5-qa-node-service.onrender.com/batchquestion", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
+                body: JSON.stringify({ questions: oPayload})
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("HTTP error " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // console.log(data);
+                    this.getQuestions(job_id);
+                    this.onCancelAIQuesDialog();
+                })
+                .catch(err => {
+                    sap.m.MessageToast.show("Error: " + err.message);
+                    console.log("Error:", err);
+
+                });
+
+        }
 
     });
 });

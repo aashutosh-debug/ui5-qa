@@ -22,7 +22,9 @@ sap.ui.define([
         onLogout: function(){ Common.logout(this)},
 
         _onRefreshMasterList: function(){
-             this.onRefresh();
+            this.onRefresh();
+            // await this.getJobs(this.user.user.id);
+            // this.openQuestionView();
         },
 
         getJobs: function (id) {
@@ -94,7 +96,7 @@ sap.ui.define([
                     oView.addDependent(oDialog);
 
                     // Add validator for MultiInput after dialog is created
-                    var oMultiInput = oView.byId("tagsInput");
+                    var oMultiInput = oView.byId("skillsInput");
                     if (oMultiInput) {
                         oMultiInput.addValidator(function (args) {
                             return new sap.m.Token({
@@ -145,12 +147,21 @@ sap.ui.define([
                 descInput.setValueState("None");
             }
 
+            var skillsInput = oView.byId("skillsInput");
+            if (!skillsInput.getTokens().length === 0) {
+                skillsInput.setValueState("Error");
+                bValid = false;
+            } else {
+                skillsInput.setValueState("None");
+            }
+
             if (!bValid) return;
 
             var oPayload = {
                 "title": titleInput.getValue(),
                 "description": descInput.getValue(),
-                "company_id": id
+                "company_id": id,
+                "skills": skillsInput.getTokens().map(function (oToken) { return oToken.getText(); })
             };
 
             fetch("https://ui5-qa-node-service.onrender.com/addjobs", {

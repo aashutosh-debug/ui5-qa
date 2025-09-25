@@ -10,12 +10,13 @@
             <Label text="Title"/>
             <Input id="titleInput" width="100%" placeholder="Enter title" required="true"/>
 
+             <Label text="Skills"/>
+            <MultiInput id="skillsInput" showSuggestion="false" placeholder="Enter skills and press Enter" width="100%" showValueHelp="false"/>
+
             <Label text="Description"/>
             <TextArea id="descInput" rows="8" width="100%" placeholder="Enter description" required="true"/>
 
-            <!-- <Label text="Tags"/>
-            <MultiInput id="tagsInput" showSuggestion="false" placeholder="Enter tags and press Enter" width="100%" showValueHelp="false"/> -->
-
+           
         </VBox>
 
         <beginButton>

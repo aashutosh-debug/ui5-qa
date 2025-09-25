@@ -127,6 +127,10 @@
                                 <form:content>
                                     <Label text="Job Title" />
                                     <Text text="{title}" />
+                                     <Label text="Skills"/>
+                                    <Text text="{skills}" />
+
+                                    <!-- <MultiInput id="skillsInputQ"  editable="false" showSuggestion="false" placeholder="Enter skills and press Enter" width="100%" showValueHelp="false"/> -->
                                     <Label text="Job Description" />
                                     <Text text="{description}" />
                                 </form:content>
@@ -153,6 +157,8 @@
                                 <form:content>
                                     <Label text="Job Title" />
                                     <Input id="titleInputForm"  value="{title}" />
+                                     <Label text="Skills"/>
+                                    <MultiInput id="skillsInputQC" editable="true" showSuggestion="false" placeholder="Enter skills and press Enter" width="100%" showValueHelp="false"/>
                                     <Label text="Job Description" />
                                     <TextArea id="descInputForm" rows="10" value="{description}" />
                                 </form:content>
@@ -179,8 +185,14 @@
                                         <ToolbarSpacer />
                                         <Button
                                             icon="sap-icon://add"
+                                            type="Emphasized"
                                             tooltip="Add Questions"
                                             press=".onCreateQuestionOpenDialog"
+                                        />
+                                        <Button
+                                            icon="sap-icon://ai"
+                                            tooltip="Generate 10 Questions using AI"
+                                            press=".onGenerateQuestionUsingAI"
                                         />
                                         <Button
                                             icon="sap-icon://refresh"

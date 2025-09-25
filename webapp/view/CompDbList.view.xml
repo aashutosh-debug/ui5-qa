@@ -63,7 +63,7 @@
 						</Column>
                         <Column	hAlign="Begin" minScreenWidth="Tablet"
 				            demandPopin="true">
-							<Text text="Job Description"/>
+							<Text text="Skills"/>
 						</Column>
                         <Column	hAlign="Center" minScreenWidth="Tablet"
 				            demandPopin="true">
@@ -75,7 +75,8 @@
 							<cells>
                                 <Text wrapping="false" text="{JobModel>id}" />
                                 <Label wrapping="false" text="{JobModel>title}" design="Bold"/>
-                                <Text wrapping="false" text="{JobModel>description}" />
+                                <!-- <Text wrapping="false" text="{JobModel>description}" /> -->
+                                <Text wrapping="false" text="{JobModel>skills}" />
                                 <Text text="{JobModel>created_at}" />
 							</cells>
 						</ColumnListItem>

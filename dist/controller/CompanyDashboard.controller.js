@@ -1,2 +1,0 @@
-sap.ui.define(["sap/ui/core/mvc/Controller","sap/ui/core/UIComponent","com/questionanswer/controller/Common"],(o,n,t)=>{"use strict";return o.extend("com.questionanswer.controller.CompanyDashboard",{onInit:function(){sap.ui.getCore().getEventBus().subscribe("LogoutChannel","logoutCompany",this.onLogout,this)},onLogout:function(){t.logout(this)},navToSupport:function(){var o=n.getRouterFor(this);o.navTo("Support")}})});
-//# sourceMappingURL=CompanyDashboard.controller.js.map

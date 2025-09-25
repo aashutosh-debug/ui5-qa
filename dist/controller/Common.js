@@ -1,2 +1,0 @@
-sap.ui.define(["sap/ui/core/UIComponent"],function(e){"use strict";return{logout:function(o){localStorage.removeItem("token");var r=e.getRouterFor(o);r.navTo("RouteView1")},_decodeToken:function(e){try{var o=e.split(".")[1];var r=o.replace(/-/g,"+").replace(/_/g,"/");var t=decodeURIComponent(atob(r).split("").map(function(e){return"%"+("00"+e.charCodeAt(0).toString(16)).slice(-2)}).join(""));return JSON.parse(t)}catch(e){console.error("Invalid JWT:",e);return null}}}});
-//# sourceMappingURL=Common.js.map
