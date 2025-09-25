@@ -1,0 +1,89 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    controllerName="com.questionanswer.controller.Login"
+>
+    <App id="app-1">
+        <Page
+            id="LoginPage"
+        >
+            <headerContent>
+              <Image src="../css/talent.png" width="2rem"></Image>
+                <Title
+                    text="{i18n>companyName}"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
+                />
+                <ToolbarSpacer />
+
+            </headerContent>
+            
+            <content>
+                <!-- <VBox
+                    width="auto"
+                    alignItems="Center"
+                    class="sapUiLargeMarginTop"
+                >
+                    <Title
+                        level="H3"
+                        titleStyle="H2"
+                        text="{i18n>companyLogin}"
+                    />
+                </VBox>
+                <ToolbarSpacer /> -->
+                <VBox class="sapUiSmallMargin">
+                    <f:SimpleForm
+                        id="SimpleFormChangeLogin"
+                        title="{i18n>companyLogin}"
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                          labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+                        singleContainerFullSize="false"
+                    >
+                        <f:content>
+                            <Label text="Email" />
+                            <Input
+                                id="email"
+                                placeholder="Work Email"
+                                type="Email"
+                                required="true"
+                            />
+                            <Label text="Password" />
+                            <Input
+                                id="password"
+                                placeholder="Password"
+                                type="Password"
+                                required="true"
+                            />
+                            <Label text="" />
+                            <Button
+                                text="Login"
+                                type="Emphasized"
+                                press="onSignUpPress"
+                                class="sapUiSmallMarginTop"
+                            />
+                            <Label text=""></Label>
+                             <HBox justifyContent="End">
+                                <Link text="Forgot Password" press="onForgotPassword"/>
+                            </HBox>
+                        </f:content>
+                    </f:SimpleForm>
+                </VBox>
+            </content>
+        </Page>
+    </App>
+</mvc:View>

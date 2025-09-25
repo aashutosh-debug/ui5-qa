@@ -1,0 +1,59 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" width="50%">
+    <Dialog
+        id="myDialogAI"
+        title="AI Generated Questions"
+        contentWidth="50%"
+        afterClose=".onDialogAIClose">
+
+        <VBox class="sapUiSmallMargin" >
+            
+           <!-- <List mode="None" items="{path: 'aiQModel>/'}" >
+                <CustomListItem>
+                    <HBox>
+                        <Label text="{aiQModel>q}"/>
+                       
+                         <List
+                            items="{
+                                path: 'aiQModel>/o'
+                            }">
+                            <StandardListItem
+                                title="{text}"
+                                info="{difficulty}" />
+                        </List>
+                    </HBox>
+                </CustomListItem>
+            </List> -->
+
+            <List
+                id="questionList"
+                items="{aiQModel>/value}">
+                <CustomListItem>
+                    <VBox class="sapUiSmallMargin">
+
+                        <!-- Question -->
+                        <Title text="{aiQModel>index}. {aiQModel>q}" level="H5" class="sapUiTinyMarginBottom"/>
+
+                        <!-- Inner list for options -->
+                        <!-- <List items="{aiQModel>o}">
+                             <StandardListItem title="{aiQModel>}" icon="sap-icon://accept"/>
+                        </List> -->
+
+                        <List items="{aiQModel>newo}">
+                             <StandardListItem title="{aiQModel>text}" icon="{aiQModel>icon}" />
+                        </List>
+
+                    </VBox>
+                </CustomListItem>
+            </List>
+
+           
+        </VBox>
+
+        <beginButton>
+            <Button text="Use" type="Emphasized" press=".onUseAIQuesDialog"/>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press=".onCancelAIQuesDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

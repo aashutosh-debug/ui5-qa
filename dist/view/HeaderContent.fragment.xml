@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core">
+     <Toolbar design="Transparent" width="100%">
+                <Image src="../css/talent.png" width="2rem"></Image>
+                	<!-- <Avatar
+							src="../css/talent.png"
+							displayShape="Circle"
+                            displaySize="S"
+							/> -->
+                <Title
+                    text="{i18n>companyName}"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
+                />
+                <ToolbarSpacer />
+                <!-- <Button
+                    text="About"
+                    type="Transparent"
+                />
+                <Button
+                    text="How It Works"
+                    type="Transparent"
+                /> -->
+                <Button
+                    text="Support"
+                    type="Transparent"
+                    press=".navToSupport"
+                />
+                <Button
+                    text="Logout"
+                    type="Transparent"
+                    press=".onLogout"
+                />
+            </Toolbar>
+</core:FragmentDefinition>

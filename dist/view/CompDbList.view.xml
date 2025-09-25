@@ -1,0 +1,88 @@
+<mvc:View
+    controllerName="com.questionanswer.controller.CompDbList"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <f:DynamicPage
+        id="dynamicPageId"
+        toggleHeaderOnTitleClick="false"
+    >
+        <!-- DynamicPage Title -->
+        <f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Jobs"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+        <!-- DynamicPage Content -->
+        <f:content>
+            <VBox fitContainer="true">
+                <OverflowToolbar class="sapFDynamicPageAlignContent">
+                    <ToolbarSpacer />
+                    <SearchField
+                        liveChange=".onSearch"
+                        width="17.5rem"
+                    />
+                    <OverflowToolbarButton
+                        icon="sap-icon://add"
+                        text="Add"
+                        type="Transparent"
+                        press=".onCreateJobOpenDialog"
+                    />
+                    <OverflowToolbarButton
+                        icon="sap-icon://refresh"
+                        text="Refresh"
+                        type="Transparent"
+                        press=".onRefresh"
+                    />
+                </OverflowToolbar>
+                
+
+                <Table
+					id="productsTable"
+					inset="false"
+					items="{
+						path: 'JobModel>/value',
+						sorter: {
+							path: 'id'
+						}
+					}"
+					class="sapFDynamicPageAlignContent"
+					width="auto">
+					<columns>
+						<Column width="12em">
+							<Text text="Job ID"/>
+						</Column>
+						<Column	hAlign="Begin">
+							<Text text="Job Title"/>
+						</Column>
+                        <Column	hAlign="Begin" minScreenWidth="Tablet"
+				            demandPopin="true">
+							<Text text="Skills"/>
+						</Column>
+                        <Column	hAlign="Center" minScreenWidth="Tablet"
+				            demandPopin="true">
+							<Text text="Created At"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" press=".openQuestionView">
+							<cells>
+                                <Text wrapping="false" text="{JobModel>id}" />
+                                <Label wrapping="false" text="{JobModel>title}" design="Bold"/>
+                                <!-- <Text wrapping="false" text="{JobModel>description}" /> -->
+                                <Text wrapping="false" text="{JobModel>skills}" />
+                                <Text text="{JobModel>created_at}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+            </VBox>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

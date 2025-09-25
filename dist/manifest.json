@@ -1,0 +1,227 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "com.questionanswer",
+    "type": "application",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": [
+        ""
+      ]
+    },
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.5",
+      "toolsId": "300606d2-0192-4b68-994a-5e329de68005"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.139.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.questionanswer.i18n.i18n",
+          "supportedLocales": [
+            ""
+          ]
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.questionanswer.view",
+        "async": true,
+        "viewPath": "com.questionanswer.view"
+      },
+      "routes": [
+        {
+          "name": "RouteView1",
+          "pattern": "",
+          "target": [
+            "TargetView1"
+          ]
+        },
+        {
+          "name": "Login",
+          "pattern": "Login",
+          "target": [
+            "TargetLogin"
+          ]
+        },
+        {
+          "name": "Register",
+          "pattern": "Register",
+          "target": [
+            "TargetRegister"
+          ]
+        },
+        {
+          "name": "CompanyDashboard",
+          "pattern": "CompanyDashboard",
+          "target": [
+            "TargetCompanyDashboard"
+          ]
+        },
+        {
+          "name": "CandidateLogin",
+          "pattern": "CandidateLogin",
+          "target": [
+            "TargetCandidateLogin"
+          ]
+        },
+        {
+          "name": "CandidateRegister",
+          "pattern": "CandidateRegister",
+          "target": [
+            "TargetCandidateRegister"
+          ]
+        },
+        {
+          "name": "CandidateDashboard",
+          "pattern": "CandidateDashboard",
+          "target": [
+            "TargetCandidateDashboard"
+          ]
+        },
+        {
+          "name": "ManageCandidates",
+          "pattern": "ManageCandidates",
+          "target": [
+            "TargetManageCandidates"
+          ]
+        },
+        {
+          "name": "Wizard",
+          "pattern": "Wizard/{id}/{testid}/{job}",
+          "target": [
+            "TargetWizard"
+          ]
+        },
+        {
+          "name": "Support",
+          "pattern": "Support",
+          "target": [
+            "TargetSupport"
+          ]
+        },
+        {
+          "name": "ForgotPassword",
+          "pattern": "ForgotPassword/{type}",
+          "target": [
+            "TargetForgotPassword"
+          ]
+        },
+        {
+          "name": "ResetPassword",
+          "pattern": "ResetPassword/{token}",
+          "target": [
+            "TargetResetPassword"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetView1": {
+          "id": "View1",
+          "name": "View1"
+        },
+        "TargetLogin": {
+          "id": "Login",
+          "name": "Login"
+        },
+        "TargetRegister": {
+          "id": "Register",
+          "name": "Register"
+        },
+        "TargetCompanyDashboard": {
+          "id": "CompanyDashboard",
+          "name": "CompanyDashboard"
+        },
+        "TargetCandidateLogin": {
+          "id": "CandidateLogin",
+          "name": "CandidateLogin"
+        },
+        "TargetCandidateRegister": {
+          "id": "CandidateRegister",
+          "name": "CandidateRegister"
+        },
+        "TargetCandidateDashboard": {
+          "id": "CandidateDashboard",
+          "name": "CandidateDashboard"
+        },
+        "TargetManageCandidates": {
+          "id": "ManageCandidates",
+          "name": "ManageCandidates"
+        },
+        "TargetWizard": {
+          "id": "Wizard",
+          "name": "Wizard"
+        },
+        "TargetSupport": {
+          "id": "Support",
+          "name": "Support"
+        },
+        "TargetForgotPassword": {
+          "id": "ForgotPassword",
+          "name": "ForgotPassword"
+        },
+        "TargetResetPassword": {
+          "id": "ResetPassword",
+          "name": "ResetPassword"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.questionanswer.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
