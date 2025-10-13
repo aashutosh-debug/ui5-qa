@@ -632,7 +632,7 @@ sap.ui.define([
         onGenerateQuestionUsingAI: function () {
             try{
             
-                this.openAIQuestionFragment(d);
+                //this.openAIQuestionFragment(d);
             BusyIndicator.show();
             var object = this.getView().getBindingContext().getObject();
             var company_id = object.company_id;
@@ -680,6 +680,8 @@ sap.ui.define([
         },
 
         openAIQuestionFragment: function(data){
+
+            if(!data.value) data.value = data;
 
             data.value.forEach((item, idx) => {
                 item.index = idx + 1;
