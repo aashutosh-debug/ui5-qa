@@ -2,7 +2,8 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/UIComponent",
     "sap/m/MessageBox",
-], (Controller, UIComponent, MessageBox) => {
+    "com/questionanswer/controller/Common",
+], (Controller, UIComponent, MessageBox, Common) => {
     "use strict";
 
     return Controller.extend("com.questionanswer.controller.Wizard", {
@@ -15,8 +16,10 @@ sap.ui.define([
         _onObjectMatched: function (oEvent) {
             var sId = oEvent.getParameter("arguments").id;
             this.testid = oEvent.getParameter("arguments").testid;
-            this.getView().byId("pageWizard").setTitle(decodeURIComponent(oEvent.getParameter("arguments").job));
-            this.contextCandidate = this.getOwnerComponent().getModel("globalModel").getProperty("/candidate");
+            // this.getView().byId("pageWizard").setTitle(decodeURIComponent(oEvent.getParameter("arguments").job));
+            //this.contextCandidate = this.getOwnerComponent().getModel("globalModel").getProperty("/candidate");
+            this.contextCandidate = Common._decodeToken(localStorage.getItem("token")).user;
+
             this.getTestQuestionForJob(sId);
         },
 

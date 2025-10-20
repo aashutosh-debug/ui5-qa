@@ -2,7 +2,21 @@
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
-   <Page id="pageWizard" title="Test">
+     <App id="app-RPW">
+   <Page id="pageWizard" >
+        <headerContent>
+              <Image src="../css/talent.png" width="2rem"></Image>
+                <Title
+                    text="{i18n>companyName}"
+                    level="H3"
+                    class="sapUiTinyMarginEnd"
+                />
+                <ToolbarSpacer />
+            </headerContent>
+            <content>
         <VBox id="wizardContainer"/>
+            </content>
+
     </Page>
+    </App>
 </mvc:View>
