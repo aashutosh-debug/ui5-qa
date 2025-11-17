@@ -2,7 +2,7 @@
    xmlns="sap.m"
    xmlns:core="sap.ui.core">
      <Toolbar design="Transparent" width="100%">
-                <Image src="../css/newlogo.png" width="2rem"></Image>
+                <Image src="../css/talent.png" width="2rem"></Image>
                 	<!-- <Avatar
 							src="../css/talent.png"
 							displayShape="Circle"
